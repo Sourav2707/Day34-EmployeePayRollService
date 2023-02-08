@@ -38,4 +38,15 @@ public class EmployeePayRollService {
         connection.connectToDatabase().close();
         return result;
     }
+    public List<EmployeePayRoll> retrieveDataFromDateRange(String date1, String date2) throws SQLException, ClassNotFoundException {
+        PreparedStatement preparedStatement = connection.connectToDatabase().prepareStatement("select * from employee_payroll where start_date between cast( ? as date) and cast( ? as date)");
+        preparedStatement.setString(1, date1);
+        preparedStatement.setString(2, date2);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        while(resultSet.next()) {
+            employeePayRollList.add(new EmployeePayRoll(resultSet.getInt(1), resultSet.getString(2), resultSet.getDouble(3), resultSet.getDate(4)));
+        }
+        connection.connectToDatabase().close();
+        return employeePayRollList;
+    }
 }
