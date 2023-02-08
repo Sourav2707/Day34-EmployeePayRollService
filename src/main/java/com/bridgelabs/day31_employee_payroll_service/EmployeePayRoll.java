@@ -11,7 +11,14 @@ public class EmployeePayRoll {
     private String ph_no;
     private String address;
     private String dept;
-    public EmployeePayRoll(int id, String name, String gender, double salary, Date startDate, String ph_no, String address, String dept) {
+    private double bp;
+    private double deduction;
+    private double tp;
+    private double it;
+    private double np;
+    public EmployeePayRoll(int id, String name, String gender, double salary,
+                           Date startDate, String ph_no, String address, String dept
+            , double bp, double deduction, double tp, double it, double np) {
         this.id = id;
         this.name = name;
         this.gender = gender;
@@ -20,6 +27,11 @@ public class EmployeePayRoll {
         this.ph_no = ph_no;
         this.address = address;
         this.dept = dept;
+        this.bp = bp;
+        this.deduction = deduction;
+        this.tp = tp;
+        this.it = it;
+        this.np = np;
     }
 
     public int getId() {
@@ -54,6 +66,7 @@ public class EmployeePayRoll {
         this.startDate = startDate;
     }
     public String toString() {
-        return "ID = "+id+", Name = "+name+", Gender = "+gender+", Salary = "+salary+", Start Date = "+startDate+", Phone number = "+ph_no+", Address = "+address+", Department = "+dept;
+        return "ID = "+id+", Name = "+name+", Gender = "+gender+", Salary = "+salary+", Start Date = "+startDate+", Phone number = "+ph_no+", Address = "+address+", Department = "+dept+
+                ",\n Basic pay = "+bp+", Deduction = "+deduction+", Taxable pay = "+tp+", Income Tax = "+it+", Net pay = "+np;
     }
 }
