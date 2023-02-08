@@ -7,10 +7,12 @@ public class EmployeePayRoll {
     private String name;
     private double salary;
     private Date startDate;
+    private String gender;
 
-    public EmployeePayRoll(int id, String name, double salary, Date startDate) {
+    public EmployeePayRoll(int id, String name, String gender, double salary, Date startDate) {
         this.id = id;
         this.name = name;
+        this.gender = gender;
         this.salary = salary;
         this.startDate = startDate;
     }
@@ -47,6 +49,6 @@ public class EmployeePayRoll {
         this.startDate = startDate;
     }
     public String toString() {
-        return "ID = "+id+", Name = "+name+", Salary = "+salary+", Start Date = "+startDate;
+        return "ID = "+id+", Name = "+name+", Gender = "+gender+", Salary = "+salary+", Start Date = "+startDate;
     }
 }
