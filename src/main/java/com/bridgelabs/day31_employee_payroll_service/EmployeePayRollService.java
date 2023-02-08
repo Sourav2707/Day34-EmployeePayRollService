@@ -12,7 +12,7 @@ public class EmployeePayRollService {
         Statement statement = connection.connectToDatabase().createStatement();
         ResultSet resultSet = statement.executeQuery("select * from employee_payroll");
         while (resultSet.next()) {
-            employeePayRollList.add(new EmployeePayRoll(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getDouble(4), resultSet.getDate(5)));
+            employeePayRollList.add(new EmployeePayRoll(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getDouble(4), resultSet.getDate(5), resultSet.getString(6), resultSet.getString(7), resultSet.getString(8)));
         }
         connection.connectToDatabase().close();
         return employeePayRollList;
@@ -33,7 +33,7 @@ public class EmployeePayRollService {
         ResultSet resultSet = preparedStatement.executeQuery();
         EmployeePayRoll result = null;
         while(resultSet.next()) {
-            result = new EmployeePayRoll(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getDouble(4), resultSet.getDate(5));
+            result = new EmployeePayRoll(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getDouble(4), resultSet.getDate(5),resultSet.getString(6), resultSet.getString(7), resultSet.getString(8));
         }
         connection.connectToDatabase().close();
         return result;
@@ -44,7 +44,7 @@ public class EmployeePayRollService {
         preparedStatement.setString(2, date2);
         ResultSet resultSet = preparedStatement.executeQuery();
         while(resultSet.next()) {
-            employeePayRollList.add(new EmployeePayRoll(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getDouble(4), resultSet.getDate(5)));
+            employeePayRollList.add(new EmployeePayRoll(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getDouble(4), resultSet.getDate(5), resultSet.getString(6), resultSet.getString(7), resultSet.getString(8)));
         }
         connection.connectToDatabase().close();
         return employeePayRollList;
