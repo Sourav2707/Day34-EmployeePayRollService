@@ -27,6 +27,9 @@ public class Main {
                 String date2 = "2023-02-08";
                 employeePayRollService.retrieveDataFromDateRange(date1, date2).forEach(x -> System.out.println(x));
                 break;
+            case 5:
+                employeePayRollService.printSumofSalarybyGender();
+                break;
             default:
                 System.out.println("Invalid option");
         }

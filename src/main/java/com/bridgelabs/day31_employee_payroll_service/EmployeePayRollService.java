@@ -12,7 +12,7 @@ public class EmployeePayRollService {
         Statement statement = connection.connectToDatabase().createStatement();
         ResultSet resultSet = statement.executeQuery("select * from employee_payroll");
         while (resultSet.next()) {
-            employeePayRollList.add(new EmployeePayRoll(resultSet.getInt(1), resultSet.getString(2), resultSet.getDouble(3), resultSet.getDate(4)));
+            employeePayRollList.add(new EmployeePayRoll(resultSet.getInt(1), resultSet.getString(2), resultSet.getDouble(4), resultSet.getDate(5)));
         }
         connection.connectToDatabase().close();
         return employeePayRollList;
@@ -33,7 +33,7 @@ public class EmployeePayRollService {
         ResultSet resultSet = preparedStatement.executeQuery();
         EmployeePayRoll result = null;
         while(resultSet.next()) {
-            result = new EmployeePayRoll(resultSet.getInt(1), resultSet.getString(2), resultSet.getDouble(3), resultSet.getDate(4));
+            result = new EmployeePayRoll(resultSet.getInt(1), resultSet.getString(2), resultSet.getDouble(4), resultSet.getDate(5));
         }
         connection.connectToDatabase().close();
         return result;
@@ -44,9 +44,32 @@ public class EmployeePayRollService {
         preparedStatement.setString(2, date2);
         ResultSet resultSet = preparedStatement.executeQuery();
         while(resultSet.next()) {
-            employeePayRollList.add(new EmployeePayRoll(resultSet.getInt(1), resultSet.getString(2), resultSet.getDouble(3), resultSet.getDate(4)));
+            employeePayRollList.add(new EmployeePayRoll(resultSet.getInt(1), resultSet.getString(2), resultSet.getDouble(4), resultSet.getDate(5)));
         }
         connection.connectToDatabase().close();
         return employeePayRollList;
+    }
+    public void printSumofSalarybyGender() throws SQLException, ClassNotFoundException {
+        Statement statement = connection.connectToDatabase().createStatement();
+        ResultSet resultSet1 = statement.executeQuery("select sum(salary) from employee_payroll where gender = 'M' group by gender");
+        while (resultSet1.next()) {
+            System.out.println("Sum of Male salary : "+resultSet1.getDouble(1));
+        }
+        ResultSet resultSet2 = statement.executeQuery("select avg(salary) from employee_payroll where gender = 'M' group by gender");
+        while (resultSet2.next()) {
+            System.out.println("Average of Male salary : "+resultSet2.getDouble(1));
+        }
+        ResultSet resultSet3 = statement.executeQuery("select min(salary) from employee_payroll where gender = 'M' group by gender");
+        while (resultSet3.next()) {
+            System.out.println("Minimum Male salary : "+resultSet3.getDouble(1));
+        }
+        ResultSet resultSet4 = statement.executeQuery("select max(salary) from employee_payroll where gender = 'M' group by gender");
+        while (resultSet4.next()) {
+            System.out.println("Maximum Male salary : "+resultSet4.getDouble(1));
+        }
+        ResultSet resultSet5 = statement.executeQuery("select count(salary) from employee_payroll where gender = 'M' group by gender");
+        while (resultSet5.next()) {
+            System.out.println("Count of Male salary : "+resultSet5.getDouble(1));
+        }
     }
 }

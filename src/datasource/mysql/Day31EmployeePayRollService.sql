@@ -13,3 +13,6 @@ values (
 select * from employee_payroll;
 select salary from employee_payroll where name = 'Sourav';
 select * from employee_payroll where start_date between cast('2018-01-01' as date) and date(now());
+alter table employee_payroll add column gender char(1) not null after name;
+update employee_payroll set gender = 'M' where name = 'Sourav' or name = 'Prasanna' or name = 'Hari';
+update employee_payroll set gender = 'F' where name = 'Terisa';
