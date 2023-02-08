@@ -16,6 +16,9 @@ public class Main {
             case 2:
                 employeePayRollService.updateSalary("Terisa", 3000000.00);
                 break;
+            case 3:
+                System.out.println(employeePayRollService.refactorUC4("Sourav"));
+                break;
             default:
                 System.out.println("Invalid option");
         }

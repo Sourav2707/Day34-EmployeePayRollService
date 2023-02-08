@@ -27,4 +27,15 @@ public class EmployeePayRollService {
         }
         return rowAffected;
     }
+    public EmployeePayRoll refactorUC4(String name) throws SQLException, ClassNotFoundException {
+        PreparedStatement preparedStatement = connection.connectToDatabase().prepareStatement("select * from employee_payroll where name = ?");
+        preparedStatement.setString(1, name);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        EmployeePayRoll result = null;
+        while(resultSet.next()) {
+            result = new EmployeePayRoll(resultSet.getInt(1), resultSet.getString(2), resultSet.getDouble(3), resultSet.getDate(4));
+        }
+        connection.connectToDatabase().close();
+        return result;
+    }
 }
